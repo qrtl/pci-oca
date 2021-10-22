@@ -18,7 +18,7 @@
     "license": "AGPL-3",
     "website": "http://www.vanroey.be/applications/bedrijfsbeheer/odoo",
     "category": "Tools",
-    "depends": ["mail",],
+    "depends": ["mail"],
     "data": [
         "data/ir_cron.xml",
         "data/mail_message_subtype.xml",
