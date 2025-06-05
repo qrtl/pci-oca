@@ -22,9 +22,12 @@ class SaleOrder(models.Model):
                         date=self.date_order
                     ).compute(price, self.pricelist_id.currency_id)
             elif acquirer.charge_fee_type == 'percentage':
+                amount_total_wo_delivery = sum(
+                    line.price_total for line in self.order_line if not line.is_delivery
+                )
                 price = (
                     acquirer.charge_fee_percentage / 100.0
-                ) * self.amount_total
+                ) * amount_total_wo_delivery
             self.env['sale.order.line'].create({
                 'order_id': self.id,
                 'payment_fee_line': True,
